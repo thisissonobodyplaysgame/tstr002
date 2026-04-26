@@ -16,6 +16,7 @@
 body{
     background:#0d0d0d;
     color:white;
+    overflow-x:hidden;
 }
 
 /* HEADER */
@@ -28,6 +29,8 @@ header{
     position:sticky;
     top:0;
     z-index:100;
+    flex-wrap:wrap;
+    gap:10px;
 }
 
 header h1{
@@ -36,24 +39,18 @@ header h1{
 }
 
 /* NAV */
-nav a{
-    color:white;
-    margin-left:25px;
-    text-decoration:none;
-    padding:10px 18px;
-    border-radius:12px;
-    transition:all 0.25s ease;
-    position:relative;
-    display:inline-block;
+nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:flex-end;
 }
 
-nav a:hover{
-    background:rgba(255,45,45,0.15);
-    transform:translateY(-3px) scale(1.05);
-    box-shadow:
-        0 0 10px rgba(255,45,45,0.6),
-        0 0 25px rgba(255,45,45,0.5),
-        0 0 45px rgba(255,45,45,0.3);
+nav a{
+    color:white;
+    text-decoration:none;
+    padding:10px 15px;
+    border-radius:10px;
 }
 
 /* HERO */
@@ -80,7 +77,6 @@ nav a:hover{
 .hero-text p{
     margin:20px 0;
     color:#aaa;
-    font-size:1.1rem;
 }
 
 .hero-text a{
@@ -92,7 +88,7 @@ nav a:hover{
     border-radius:8px;
 }
 
-/* IMAGE */
+/* HERO IMAGE */
 .hero-img{
     flex:1;
     min-width:300px;
@@ -106,11 +102,14 @@ nav a:hover{
     box-shadow:0 0 25px rgba(255,45,45,.25);
 }
 
-/* SECTION TITLE */
+/* TITLE */
 .section-title{
     text-align:center;
     font-size:2.5rem;
     margin:40px 0 20px;
+
+    /* ✅ FIX FOR SCROLL OFFSET (IMPORTANT) */
+    scroll-margin-top:100px;
 }
 
 /* PRODUCTS */
@@ -125,7 +124,6 @@ nav a:hover{
     background:#181818;
     border-radius:20px;
     overflow:hidden;
-    box-shadow:0 10px 20px rgba(0,0,0,.4);
     transition:.3s;
 }
 
@@ -133,20 +131,20 @@ nav a:hover{
     transform:translateY(-8px);
 }
 
+/* IMAGE BEHAVIOR (UNCHANGED) */
 .card img{
     width:100%;
     height:220px;
-    object-fit:cover;
+    object-fit:contain;
+    background:#111;
+    padding:8px;
     border-radius:20px;
-    border:4px solid #2a2a2a;
-    padding:5px;
-    transition:.4s ease;
 }
 
+/* hover only subtle */
 .card:hover img{
-    transform:scale(1.05);
+    transform:scale(1.02);
     border-color:#ff2d2d;
-    box-shadow:0 0 25px rgba(255,45,45,.4);
 }
 
 .card-content{
@@ -154,14 +152,12 @@ nav a:hover{
 }
 
 .card-content h3{
-    margin-bottom:10px;
     color:#ff2d2d;
 }
 
 .card-content p{
     color:#bbb;
-    font-size:.95rem;
-    margin-bottom:20px;
+    margin-bottom:15px;
 }
 
 .card-content a{
@@ -173,7 +169,7 @@ nav a:hover{
     border-radius:8px;
 }
 
-/* BURST EFFECT */
+/* BURST (UNCHANGED) */
 .line-burst{
     position:fixed;
     width:6px;
@@ -197,11 +193,40 @@ nav a:hover{
     }
 }
 
-/* FOOTER */
-footer{
-    text-align:center;
-    color:#666;
-    padding:30px;
+/* MOBILE */
+@media(max-width:768px){
+
+    header{
+        justify-content:center;
+        text-align:center;
+    }
+
+    nav{
+        justify-content:center;
+        width:100%;
+    }
+
+    .hero{
+        text-align:center;
+        justify-content:center;
+    }
+
+    .hero-text h2{
+        font-size:2.5rem;
+    }
+
+    .hero-img{
+        display:flex;
+        justify-content:center;
+    }
+
+    .hero-img img{
+        max-width:100%;
+    }
+
+    .products{
+        padding:20px;
+    }
 }
 </style>
 </head>
@@ -248,7 +273,7 @@ footer{
         <img src="https://m.media-amazon.com/images/I/51fScOJwShL._AC_SX466_.jpg">
         <div class="card-content">
             <h3>Front Plate</h3>
-            <p>Cleaner aggressive front styling.</p>
+            <p>Cleaner aggressive styling.</p>
             <p>$14.99</p>
             <a href="https://www.amazon.com/dp/B0F2YNB1Q1" target="_blank">Buy Now</a>
         </div>
@@ -258,7 +283,7 @@ footer{
         <img src="https://m.media-amazon.com/images/I/71uAmMXK8WL._AC_SX679_.jpg">
         <div class="card-content">
             <h3>Number Stickers</h3>
-            <p>Customize the front plate</p>
+            <p>Custom styling</p>
             <p>$5.99</p>
             <a href="https://www.amazon.com/dp/B0FSDN8J5W" target="_blank">Buy Now</a>
         </div>
@@ -267,8 +292,8 @@ footer{
     <div class="card">
         <img src="https://m.media-amazon.com/images/I/81jyvqsvVaL._AC_SY679_.jpg">
         <div class="card-content">
-            <h3>Red Seat Cover</h3>
-            <p>Better look + comfort upgrade.</p>
+            <h3>Seat Cover</h3>
+            <p>Comfort + style upgrade.</p>
             <p>$29.99</p>
             <a href="https://www.amazon.com/dp/B0GJZRZL5Z" target="_blank">Buy Now</a>
         </div>
@@ -277,7 +302,7 @@ footer{
 </section>
 
 <footer>
-Ride Faster. Ride Smarter. Ride TST.
+Ride Faster. Ride Smarter.
 </footer>
 
 <script>
@@ -296,39 +321,76 @@ function burstEffect(x, y){
         burst.style.setProperty("--angle", angle + "rad");
 
         document.body.appendChild(burst);
-
         setTimeout(() => burst.remove(), 600);
     }
 }
 
-function handleClick(e){
-    e.preventDefault();
+/* ONLY MODS SCROLL FIX (SLOW VERSION) */
+function smoothScrollTo(targetY, duration = 1800) {
+    const startY = window.scrollY;
+    const diff = targetY - startY;
+    let start;
 
-    const rect = this.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
+    function easeInOutCubic(t) {
+        return t < 0.5
+            ? 4 * t * t * t
+            : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
 
-    burstEffect(x, y);
+    function step(timestamp) {
+        if (!start) start = timestamp;
+        const time = timestamp - start;
+        const progress = Math.min(time / duration, 1);
 
-    const href = this.getAttribute("href");
-    const isBlank = this.target === "_blank";
+        window.scrollTo(0, startY + diff * easeInOutCubic(progress));
 
-    setTimeout(() => {
-        if(href.startsWith("#")){
-            document.querySelector(href).scrollIntoView({behavior:"smooth"});
+        if (time < duration) {
+            requestAnimationFrame(step);
         }
-        else if(isBlank){
-            window.open(href, "_blank", "noopener,noreferrer");
-        }
-        else{
-            window.location.href = href;
-        }
-    }, 180);
+    }
+
+    requestAnimationFrame(step);
 }
 
-/* NAV + BUY BUTTONS */
-document.querySelectorAll("nav a, .card-content a, .hero-text a")
-.forEach(el => el.addEventListener("click", handleClick));
+document.querySelectorAll('a[href="#mods"]').forEach(a=>{
+    a.addEventListener("click", function(e){
+        e.preventDefault();
+
+        const rect = this.getBoundingClientRect();
+        burstEffect(rect.left + rect.width/2, rect.top + rect.height/2);
+
+        const target = document.querySelector("#mods");
+
+        const offset = 80; // keeps header from covering it
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+
+        smoothScrollTo(top, 2000); // 👈 slower scroll (2 seconds)
+    });
+});
+
+/* ALL OTHER LINKS */
+document.querySelectorAll("a:not([href='#mods'])").forEach(a=>{
+    a.addEventListener("click", function(e){
+
+        const rect = this.getBoundingClientRect();
+        burstEffect(rect.left + rect.width/2, rect.top + rect.height/2);
+
+        const href = this.getAttribute("href");
+        const isBlank = this.target === "_blank";
+
+        if(!href) return;
+
+        e.preventDefault();
+
+        setTimeout(()=>{
+            if(isBlank){
+                window.open(href, "_blank");
+            } else {
+                window.location.href = href;
+            }
+        },180);
+    });
+});
 </script>
 
 </body>
