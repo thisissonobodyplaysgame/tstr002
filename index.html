@@ -107,15 +107,13 @@ nav a{
     text-align:center;
     font-size:2.5rem;
     margin:40px 0 20px;
-
-    /* ✅ FIX FOR SCROLL OFFSET (IMPORTANT) */
     scroll-margin-top:100px;
 }
 
-/* PRODUCTS */
+/* PRODUCTS (FIXED) */
 .products{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns:repeat(4,1fr);
     gap:25px;
     padding:40px;
 }
@@ -131,7 +129,6 @@ nav a{
     transform:translateY(-8px);
 }
 
-/* IMAGE BEHAVIOR (UNCHANGED) */
 .card img{
     width:100%;
     height:220px;
@@ -141,7 +138,6 @@ nav a{
     border-radius:20px;
 }
 
-/* hover only subtle */
 .card:hover img{
     transform:scale(1.02);
     border-color:#ff2d2d;
@@ -169,7 +165,7 @@ nav a{
     border-radius:8px;
 }
 
-/* BURST (UNCHANGED) */
+/* BURST */
 .line-burst{
     position:fixed;
     width:6px;
@@ -193,7 +189,7 @@ nav a{
     }
 }
 
-/* MOBILE */
+/* MOBILE FIXED */
 @media(max-width:768px){
 
     header{
@@ -225,6 +221,7 @@ nav a{
     }
 
     .products{
+        grid-template-columns:repeat(2,1fr);
         padding:20px;
     }
 }
@@ -298,7 +295,8 @@ nav a{
             <a href="https://www.amazon.com/dp/B0GJZRZL5Z" target="_blank">Buy Now</a>
         </div>
     </div>
-        <div class="card">
+
+    <div class="card">
         <img src="https://m.media-amazon.com/images/I/61lZ5w06OHL._AC_SY300_SX300_QL70_FMwebp_.jpg">
         <div class="card-content">
             <h3>Handlebar Grips</h3>
@@ -307,16 +305,18 @@ nav a{
             <a href="https://a.co/d/02qGYdR1" target="_blank">Buy Now</a>
         </div>
     </div>
-            <div class="card">
-        <img src="https://i5.walmartimages.com/seo/Master-Lock-Black-Python-Cable-Lock-Key-Adjustable-Metal-Cable-Lock-Weather-Resistant-Vinyl-Coating-Outdoor-Equipment-Bicycles-Trail-Cameras-6-feet-l_c3f340f9-f444-4db5-8817-295cd1e1cfd7.d6d4d8559c76cd4623cd5040e8930ae8.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF">
+
+    <div class="card">
+        <img src="https://i5.walmartimages.com/seo/Master-Lock-Black-Python-Cable-Lock-Key-Adjustable-Metal-Cable-Lock-Weather-Resistant-Vinyl-Coating-Outdoor-Equipment-Bicycles-Trail-Cameras-6-feet-l_c3f340f9-f444-4db5-8817-295cd1e1cfd7.d6d4d8559c76cd4623cd5040e8930ae8.jpeg">
         <div class="card-content">
             <h3>Bike Lock</h3>
             <p>Prevent theft for your bike.</p>
             <p>$19.35</p>
-            <a href="https://www.walmart.com/ip/Master-Lock-8428KADPF-Python-Adjustable-Bicycle-Locking-Cable-6-Ft-Long-Black/903003135?wmlspartner=wlpa&selectedSellerId=0&utm_source=chatgpt.com" target="_blank">Buy Now</a>
+            <a href="https://www.walmart.com/ip/Master-Lock-8428KADPF-Python-Adjustable-Bicycle-Locking-Cable-6-Ft-Long-Black/903003135" target="_blank">Buy Now</a>
         </div>
     </div>
-                <div class="card">
+
+    <div class="card">
         <img src="https://m.media-amazon.com/images/I/71M5UsN4uVL._AC_SX679_.jpg">
         <div class="card-content">
             <h3>E Bike Helmet</h3>
@@ -325,7 +325,8 @@ nav a{
             <a href="https://www.amazon.com/CARTMAN-Approved-Motocross-Motorcycle-Adult-Medium/dp/B0DSZNQ9VJ/" target="_blank">Buy Now</a>
         </div>
     </div>
-                 <div class="card">
+
+    <div class="card">
         <img src="https://m.media-amazon.com/images/I/61fDN1xGPIL._AC_SX569_.jpg">
         <div class="card-content">
             <h3>Goggles</h3>
@@ -333,13 +334,9 @@ nav a{
             <p>$9.99</p>
             <a href="https://www.amazon.com/Lievermo-Goggles-Motorcycle-Motocross-Windproof/dp/B0CZLB5DNQ" target="_blank">Buy Now</a>
         </div>
-    </div>   
+    </div>
 
 </section>
-
-<footer>
-
-</footer>
 
 <script>
 function burstEffect(x, y){
@@ -361,7 +358,6 @@ function burstEffect(x, y){
     }
 }
 
-/* ONLY MODS SCROLL FIX (SLOW VERSION) */
 function smoothScrollTo(targetY, duration = 1800) {
     const startY = window.scrollY;
     const diff = targetY - startY;
@@ -396,15 +392,13 @@ document.querySelectorAll('a[href="#mods"]').forEach(a=>{
         burstEffect(rect.left + rect.width/2, rect.top + rect.height/2);
 
         const target = document.querySelector("#mods");
-
-        const offset = 80; // keeps header from covering it
+        const offset = 80;
         const top = target.getBoundingClientRect().top + window.scrollY - offset;
 
-        smoothScrollTo(top, 2000); // 👈 slower scroll (2 seconds)
+        smoothScrollTo(top, 2000);
     });
 });
 
-/* ALL OTHER LINKS */
 document.querySelectorAll("a:not([href='#mods'])").forEach(a=>{
     a.addEventListener("click", function(e){
 
